@@ -6,7 +6,9 @@ class ProductsCreate extends React.Component {
         super(props)
 
         this.state = {
-            propertyCount: 1,
+            name: '',
+            upc: '',
+            availableOn: ''
         }
     }
 
@@ -16,11 +18,11 @@ class ProductsCreate extends React.Component {
                 <h1>Products</h1>
                 <form>
                     <label>Name</label>
-                    <input type="text"/>
+                    <input type="text" value="this.state.name"/>
                     <label>UPC</label>
-                    <input type="text"/>
+                    <input type="text" value="this.state.upc"/>
                     <label>Availiable On</label>
-                    <input type="text" placeholder="mm/dd/yyyy"/>
+                    <input type="text" placeholder="mm/dd/yyyy" value="this.state.date"/>
                     <h1>Properties</h1>
                     <Properties/>
                 </form>
