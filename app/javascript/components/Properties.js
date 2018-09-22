@@ -1,17 +1,19 @@
-import React, { Fragment } from 'react'
-
+import React from 'react';
 
 class Properties extends React.Component {
-    render () {
-        return (
-            <Fragment>
-                <label>Property Name</label>
-                <input type="text"/>
-                <label>Property Value</label>
-                <input type="text"/>
-            </Fragment>
-        )
-    }
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className="property_container">
+        <label>Property Name</label>
+        <input type="text" name="propertyName" />
+        <label>Property Value</label>
+        <input type="text" name="propertyValue" />
+      </div>
+    );
+  }
 }
 
-export default Properties
+export default Properties;
