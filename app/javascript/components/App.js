@@ -6,7 +6,7 @@ import Products from './Products'
 class App extends React.Component {
     render () {
         return (
-            <div>
+            <div className="flex_container">
                 <Switch>
                     <Route exact path="/" component={ProductsCreate}/>
                     <Route exact path="/products" component={Products}/>
