@@ -14,10 +14,6 @@ class ProductsCreate extends React.Component {
                     <label>Availiable On</label>
                     <input type="text" placeholder="mm/dd/yyyy"/>
                     <h1>Properties</h1>
-                    <label>Property Name</label>
-                    <input type="text"/>
-                    <label>Property Value</label>
-                    <input type="text"/>
                     <Properties/>
                 </form>
             </div>

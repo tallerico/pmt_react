@@ -14,4 +14,4 @@ class Properties extends React.Component {
     }
 }
 
-export default ProductsCreate
+export default Properties
