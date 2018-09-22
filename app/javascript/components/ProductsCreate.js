@@ -2,6 +2,14 @@ import React from 'react'
 import Properties from './Properties'
 
 class ProductsCreate extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            propertyCount: 1,
+        }
+    }
+
     render () {
         return (
             <div className="form_container">
