@@ -18,6 +18,7 @@ class ProductsCreate extends React.Component {
                     <input type="text"/>
                     <label>Property Value</label>
                     <input type="text"/>
+                    <Properties/>
                 </form>
             </div>
         )
