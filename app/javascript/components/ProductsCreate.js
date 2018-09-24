@@ -9,8 +9,9 @@ class ProductsCreate extends React.Component {
       name: '',
       upc: '',
       availableOn: '',
-      properties: [{ name: '', value: '' }],
-      inputs: []
+      propertyName: '',
+      propertyValue: '',
+      properties: []
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -25,6 +26,12 @@ class ProductsCreate extends React.Component {
     if (e.target.name === 'date') {
       this.setState({ availableOn: e.target.value });
     }
+    if (e.target.name === 'propertyName') {
+      this.setState({ propertyName: e.target.value });
+    }
+    if (e.target.name === 'propertyValue') {
+      this.setState({ propertyValue: e.target.value });
+    }
   }
 
   submitData = () => {
@@ -33,39 +40,42 @@ class ProductsCreate extends React.Component {
       body: JSON.stringify({
         name: this.state.name,
         upc: this.state.upc,
-        availableOn: this.state.availableOn
+        availableOn: this.state.availableOn,
+        properties: this.state.properties
       }),
       headers: {
         'Content-Type': 'application/json'
       },
       credentials: 'same-origin'
-    })
-      .then(response => {
-        return response.json;
-      })
-      .then(data => {
-        console.log(data);
-      });
+    }).then(response => {
+      return response.json;
+    });
+    this.refs.name.value = '';
+    this.refs.upc.value = '';
+    this.refs.date.value = '';
   };
 
   clickHandler = e => {
     e.preventDefault();
-    this.submitData();
+    if (e.target.id === 'save') {
+      this.submitData();
+    }
+    if (e.target.id === 'properties') {
+      this.updateProperties();
+    }
   };
 
-  appendInput = e => {
-    e.preventDefault();
-    const newInput = `input-${this.state.inputs.length}`;
-    this.setState({ inputs: this.state.inputs.concat([newInput]) });
-  };
-
-  updateProperties(name, value) {
-    propertyObj = {
-      name: name,
-      value: value
+  updateProperties = e => {
+    const propertyObj = {
+      name: this.state.propertyName,
+      value: this.state.propertyValue
     };
-    this.setState(properties.push(propertyObj));
-  }
+    this.setState({ properties: this.state.properties.concat(propertyObj) });
+    this.setState({ propertyName: '' });
+    this.setState({ propertyValue: '' });
+    this.refs.propertyName.value = '';
+    this.refs.propertyValue.value = '';
+  };
 
   render() {
     return (
@@ -73,23 +83,52 @@ class ProductsCreate extends React.Component {
         <h1>Products</h1>
         <form>
           <label>Name</label>
-          <input type="text" name="name" onChange={this.handleChange} />
+          <input
+            type="text"
+            ref="name"
+            name="name"
+            onChange={this.handleChange}
+          />
           <label>UPC</label>
-          <input type="text" name="upc" onChange={this.handleChange} />
+          <input
+            type="text"
+            ref="upc"
+            name="upc"
+            onChange={this.handleChange}
+          />
           <label>Availiable On</label>
           <input
             type="text"
+            ref="date"
             name="date"
             placeholder="mm/dd/yyyy"
             onChange={this.handleChange}
           />
           <h1>Properties</h1>
-          {this.state.inputs.map(input => (
-            <Properties key={input} />
-          ))}
-          <button onClick={this.appendInput}>Add Properties</button>
-          <button onClick={this.clickHandler}>Save</button>
+          <div className="property_container">
+            <label>Property Name</label>
+            <input
+              type="text"
+              name="propertyName"
+              onChange={this.handleChange}
+              ref="propertyName"
+            />
+            <label>Property Value</label>
+            <input
+              type="text"
+              name="propertyValue"
+              onChange={this.handleChange}
+              ref="propertyValue"
+            />
+          </div>
+          <button id="properties" onClick={this.clickHandler}>
+            Add Properties
+          </button>
+          <button id="save" onClick={this.clickHandler}>
+            Save
+          </button>
         </form>
+        <h3>Properties Added</h3>
       </div>
     );
   }
