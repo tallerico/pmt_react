@@ -1,4 +1,4 @@
 class Property < ApplicationRecord
-    belongs_to :product
-    has_one :product_property, dependent: :destroy
+  belongs_to :product
+  has_many :product_properties
 end

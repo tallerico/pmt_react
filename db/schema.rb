@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_22_140824) do
+ActiveRecord::Schema.define(version: 2018_09_24_163027) do
 
   create_table "product_properties", force: :cascade do |t|
     t.string "value"
-    t.integer "property_id"
-    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id"
+    t.integer "property_id"
     t.index ["product_id"], name: "index_product_properties_on_product_id"
     t.index ["property_id"], name: "index_product_properties_on_property_id"
   end
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 2018_09_22_140824) do
 
   create_table "properties", force: :cascade do |t|
     t.string "name"
-    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id"
     t.index ["product_id"], name: "index_properties_on_product_id"
   end
 

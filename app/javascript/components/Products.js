@@ -1,12 +1,9 @@
-import React from 'react'
-
+import React from 'react';
 
 class Products extends React.Component {
-    render () {
-        return (
-            <div>This is the product page</div>
-        )
-    }
+  render() {
+    return <div>This is the product page</div>;
+  }
 }
 
-export default Products
+export default Products;
