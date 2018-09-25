@@ -3,13 +3,6 @@ class SendDataController < ApplicationController
 
     def save
         product = Product.new(name:params[:name], upc:params[:upc].to_i, available_on:params[:availableon])
-        
-        # params[:properties].each do |property|
-        #     product.product_properties.create(
-        #       property_id: Property.find_by(name: property[:name]),
-        #       value:       property[:value]
-        #     )
-        # end
 
         Product.transaction do
             product.save!
@@ -19,16 +12,6 @@ class SendDataController < ApplicationController
             end
         end
 
-        # x=0
-        # while x < params[:properties].length
-            
-        #     product_property = product.product_properties.build(value:params[:properties][x][:value])
-        #     property = product.properties.build(name:params[:properties][x][:name])
-        #     property.save
-        #     product_property.save
-        #     x += 1;
-        # end
-        # product.save   
     end
 
     private
