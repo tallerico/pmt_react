@@ -11,15 +11,35 @@ class SendDataController < ApplicationController
         #     )
         # end
 
-        x=0
-        while x < params[:properties].length
-            property = product.properties.build(name:params[:properties][x][:name])
-            product_property = property.product_properties.build(value:params[:properties][x][:value])
+        Product.transaction do
+            product.save!
             
-            property.save
-            product_property.save
-            x += 1;
+            if product.persisted?
+                Property.create!(property_params(product))
+            end
         end
-        product.save   
-    end    
+
+        # x=0
+        # while x < params[:properties].length
+            
+        #     product_property = product.product_properties.build(value:params[:properties][x][:value])
+        #     property = product.properties.build(name:params[:properties][x][:name])
+        #     property.save
+        #     product_property.save
+        #     x += 1;
+        # end
+        # product.save   
+    end
+
+    private
+
+    def property_params(product)
+        params[:properties]
+            .map { |hash| 
+                {
+                    name: hash['name'],
+                    product_properties_attributes: [{value: hash['value'], product_id: product.id}]
+                }
+            }
+    end
 end
