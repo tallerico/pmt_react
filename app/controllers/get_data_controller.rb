@@ -10,10 +10,10 @@ class GetDataController < ApplicationController
         name: product.name,
         upc: product.upc,
         available_on: product.available_on,
-        properties: product.properties.map do |property|
+        properties: product.product_properties.map do |product_property|
           {
-            name: property.name,
-            value: property.product_property.value
+            name: product_property.property.name,
+            value: product_property.value
           }
         end
       }
