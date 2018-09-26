@@ -10,7 +10,7 @@ const ProductContainer = props => {
     <div className="container">
       {/* {mapping over products and creating groups of ul's displaying data} */}
       {products.map((product, index) => {
-        return <ProductItem key={index} data={product} />;
+        return <ProductItem key={index} data={product} search={props.search} />;
       })}
     </div>
   );
