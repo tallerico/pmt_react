@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import ProductContainer from './ProductContainer';
 
+// contains search form as well as product list
+
 class Products extends React.Component {
   constructor() {
     super();
@@ -9,6 +11,8 @@ class Products extends React.Component {
       products: []
     };
   }
+
+  //getting data on mount
 
   componentDidMount() {
     fetch('/get_data', {
