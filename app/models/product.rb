@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   validates :name, presence: true, length: { maximum: 1024 }, uniqueness: true
-  validates :upc, presence: true, numericality: { only_integer: true }, :check_for_length, uniqueness: true
+  validates :upc, presence: true, numericality: { only_integer: true }, uniqueness: true
+  validate :check_for_length
   has_many :product_properties
   has_many :properties, through: :product_properties
 

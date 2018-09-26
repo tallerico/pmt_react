@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Properties from './Properties';
+import MessageContainer from './MessageContainer';
 
 class ProductsCreate extends React.Component {
   constructor(props) {
@@ -11,7 +12,9 @@ class ProductsCreate extends React.Component {
       availableOn: '',
       propertyName: '',
       propertyValue: '',
-      properties: []
+      properties: [],
+      error: false,
+      saved: false
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -48,18 +51,30 @@ class ProductsCreate extends React.Component {
       },
       credentials: 'same-origin'
     }).then(response => {
+      if (response.status !== 204) {
+        // console.log(`error Status:Code ${response.status}`);
+        this.setState({ error: true });
+        return;
+      } else {
+        this.refs.name.value = '';
+        this.refs.upc.value = '';
+        this.refs.date.value = '';
+        this.setState({
+          name: '',
+          upc: '',
+          availableOn: '',
+          propertyName: '',
+          propertyValue: '',
+          properties: [],
+          error: false,
+          saved: true
+        });
+        setTimeout(() => {
+          this.setState({ saved: false });
+        }, 5000);
+      }
+
       return response.json;
-    });
-    this.refs.name.value = '';
-    this.refs.upc.value = '';
-    this.refs.date.value = '';
-    this.setState({
-      name: '',
-      upc: '',
-      availableOn: '',
-      propertyName: '',
-      propertyValue: '',
-      properties: []
     });
   };
 
@@ -87,57 +102,63 @@ class ProductsCreate extends React.Component {
 
   render() {
     return (
-      <div className="form_container">
-        <h1>Products</h1>
-        <form>
-          <label>Name</label>
-          <input
-            type="text"
-            ref="name"
-            name="name"
-            onChange={this.handleChange}
-          />
-          <label>UPC</label>
-          <input
-            type="text"
-            ref="upc"
-            name="upc"
-            onChange={this.handleChange}
-          />
-          <label>Availiable On</label>
-          <input
-            type="text"
-            ref="date"
-            name="date"
-            placeholder="mm/dd/yyyy"
-            onChange={this.handleChange}
-          />
-          <h1>Properties</h1>
-          <div className="property_container">
-            <label>Property Name</label>
+      <Fragment>
+        <MessageContainer
+          properties={this.state.error}
+          saved={this.state.saved}
+        />
+        <div className="form_container">
+          <h1>Products</h1>
+          <form>
+            <label>Name</label>
             <input
               type="text"
-              name="propertyName"
+              ref="name"
+              name="name"
               onChange={this.handleChange}
-              ref="propertyName"
             />
-            <label>Property Value</label>
+            <label>UPC</label>
             <input
               type="text"
-              name="propertyValue"
+              ref="upc"
+              name="upc"
               onChange={this.handleChange}
-              ref="propertyValue"
             />
-          </div>
-          <button id="properties" onClick={this.clickHandler}>
-            Add Properties
-          </button>
-          <button id="save" onClick={this.clickHandler}>
-            Save
-          </button>
-        </form>
-        <Properties properties={this.state.properties} />
-      </div>
+            <label>Availiable On</label>
+            <input
+              type="text"
+              ref="date"
+              name="date"
+              placeholder="mm/dd/yyyy"
+              onChange={this.handleChange}
+            />
+            <h1>Properties</h1>
+            <div className="property_container">
+              <label>Property Name</label>
+              <input
+                type="text"
+                name="propertyName"
+                onChange={this.handleChange}
+                ref="propertyName"
+              />
+              <label>Property Value</label>
+              <input
+                type="text"
+                name="propertyValue"
+                onChange={this.handleChange}
+                ref="propertyValue"
+              />
+            </div>
+            <button id="properties" onClick={this.clickHandler}>
+              Add Properties
+            </button>
+            <button id="save" onClick={this.clickHandler}>
+              Save
+            </button>
+          </form>
+          <Properties properties={this.state.properties} />
+        </div>
+      </Fragment>
     );
   }
 }
