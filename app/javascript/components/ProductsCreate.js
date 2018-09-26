@@ -82,6 +82,7 @@ class ProductsCreate extends React.Component {
     e.preventDefault();
     if (e.target.id === 'save') {
       this.submitData();
+      this.updateProperties();
     }
     if (e.target.id === 'properties') {
       this.updateProperties();
