@@ -1,6 +1,7 @@
 class SendDataController < ApplicationController
     protect_from_forgery with: :null_session
 
+    # creating products from params on post
     def save
         product = Product.new(name:params[:name], upc:params[:upc].to_i, available_on:params[:availableon])
 
@@ -15,7 +16,7 @@ class SendDataController < ApplicationController
     end
 
     private
-
+    #mapping over property data and associating it with product
     def property_params(product)
         params[:properties]
             .map { |hash| 
