@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import ProductContainer from './ProductContainer';
+import './stylesheets/main.css';
 
 // contains search form as well as product list
 

@@ -7,7 +7,7 @@ class GetDataController < ApplicationController
       {
         name: product.name,
         upc: product.upc,
-        available_on: product.available_on,
+        available_on: product.available_on.strftime("%d/%m/%Y"),
         properties: product.product_properties.map do |product_property|
           {
             name: product_property.property.name,

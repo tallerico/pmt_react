@@ -3,7 +3,8 @@ class SendDataController < ApplicationController
 
     # creating products from params on post
     def save
-        product = Product.new(name:params[:name], upc:params[:upc].to_i, available_on:params[:availableon])
+        p params[:availableon]
+        product = Product.new(name:params[:name], upc:params[:upc].to_i, available_on:params[:availableOn])
 
         Product.transaction do
             product.save!
