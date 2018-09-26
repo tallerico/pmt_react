@@ -1,8 +1,13 @@
 import React, { Fragment } from 'react';
+import ProductContainer from './ProductContainer';
 
 class Products extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+      products: []
+    };
   }
 
   componentDidMount() {
@@ -16,7 +21,11 @@ class Products extends React.Component {
       .then(response => {
         return response.json();
       })
-      .then(data => console.log(data));
+      .then(data => {
+        this.setState({
+          products: data
+        });
+      });
   }
 
   render() {
@@ -25,12 +34,9 @@ class Products extends React.Component {
         <h1>Products</h1>
         <form>
           <input type="text" />
+          <button>Search</button>
         </form>
-        <div className="container">
-          <ul>
-            <li>Items</li>
-          </ul>
-        </div>
+        <ProductContainer products={this.state.products} />
       </Fragment>
     );
   }

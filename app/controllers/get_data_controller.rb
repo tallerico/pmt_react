@@ -3,9 +3,7 @@ class GetDataController < ApplicationController
   
   def pull
     # @allproduct = Product.includes(:properties, :product_properties).to_a
-    @products = Product.joins(:properties, :product_properties)
-
-    all = @products.map do |product|
+    products = Product.joins(:properties, :product_properties).map do |product|
       {
         name: product.name,
         upc: product.upc,
@@ -19,7 +17,7 @@ class GetDataController < ApplicationController
       }
     end.to_json  
     
-    render json: all
+    render json: products
   end
   
 

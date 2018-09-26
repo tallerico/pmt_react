@@ -34,8 +34,6 @@ ActiveRecord::Schema.define(version: 2018_09_24_163027) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "product_id"
-    t.index ["product_id"], name: "index_properties_on_product_id"
   end
 
 end

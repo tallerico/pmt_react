@@ -1,19 +1,24 @@
 import React from 'react';
+import Property from './Property';
 
-class Properties extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
+const Properties = props => {
+  const property = props.properties;
+
+  /*if no search results displaying a message*/
+
+  if (property.length === 0) {
+    return <h3>No Properties Added</h3>;
+  } else {
+    /*Rendering images*/
     return (
-      <div className="property_container">
-        <label>Property Name</label>
-        <input type="text" name="propertyName" />
-        <label>Property Value</label>
-        <input type="text" name="propertyValue" />
+      <div className="properties_container">
+        <h3>Properties Added</h3>
+        {property.map((property, index) => (
+          <Property key={index.toString()} property={property} />
+        ))}
       </div>
     );
   }
-}
+};
 
 export default Properties;

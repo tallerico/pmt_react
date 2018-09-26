@@ -53,6 +53,14 @@ class ProductsCreate extends React.Component {
     this.refs.name.value = '';
     this.refs.upc.value = '';
     this.refs.date.value = '';
+    this.setState({
+      name: '',
+      upc: '',
+      availableOn: '',
+      propertyName: '',
+      propertyValue: '',
+      properties: []
+    });
   };
 
   clickHandler = e => {
@@ -128,7 +136,7 @@ class ProductsCreate extends React.Component {
             Save
           </button>
         </form>
-        <h3>Properties Added</h3>
+        <Properties properties={this.state.properties} />
       </div>
     );
   }
