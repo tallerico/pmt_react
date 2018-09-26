@@ -2,7 +2,7 @@ class GetDataController < ApplicationController
 
   
   def pull
-    # @allproduct = Product.includes(:properties, :product_properties).to_a
+    # joins associated tables and build json object to be sent to client
     products = Product.joins(:properties, :product_properties).map do |product|
       {
         name: product.name,
@@ -16,7 +16,7 @@ class GetDataController < ApplicationController
         end
       }
     end.to_json  
-    
+    # renders json for the client
     render json: products
   end
   
