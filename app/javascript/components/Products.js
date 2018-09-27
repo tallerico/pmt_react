@@ -45,15 +45,18 @@ class Products extends React.Component {
   render() {
     return (
       <Fragment>
-        <h1>Products</h1>
-        <form>
-          <input
-            type="text"
-            name="search"
-            onChange={this.handleChange}
-            ref="search"
-          />
-        </form>
+        <div className="search">
+          <h1>Products</h1>
+          <form>
+            <input
+              type="text"
+              name="search"
+              onChange={this.handleChange}
+              ref="search"
+              placeholder="Search..."
+            />
+          </form>
+        </div>
         <ProductContainer
           products={this.state.products}
           search={this.state.search}
