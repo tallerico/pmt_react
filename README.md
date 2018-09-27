@@ -39,7 +39,8 @@ This is a simple product management tool. Built using React on Rails :muscle: :f
 
 - Database creation
 
-  This was built using Ruby on Rails built SQLite db.
+  This was built using Ruby on Rails built in SQLite db.
+  
   To create db simply run:
   ```
   bin/rails db:migrate
