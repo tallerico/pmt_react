@@ -4,24 +4,15 @@ This is a simple product management tool. Built using React on Rails :muscle: :f
 
 - Ruby version
 
-  ruby 2.5.1p57
+  **ruby 2.5.1p57**
+  **react_on_rails 11.1.4**
 
-- System dependencies
-
-- Configuration
+- Dependencies
 
 - Database creation
 
-  This was built using Ruby on Rails built SQLite.
+  This was built using Ruby on Rails built SQLite db.
   To create db simply run:
+  ```
   bin/rails db:migrate
-
-- Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  ```
