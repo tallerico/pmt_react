@@ -4,8 +4,6 @@ import Property from './Property';
 const Properties = props => {
   const property = props.properties;
 
-  /*if no search results displaying a message*/
-
   if (property.length === 0) {
     return <h3>No Properties Added</h3>;
   } else {

@@ -15,6 +15,7 @@ class Products extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  // handles change in search input
   handleChange(e) {
     console.log(e);
     if (e.target.name === 'search') {
@@ -22,7 +23,7 @@ class Products extends React.Component {
     }
   }
 
-  //getting data on mount
+  //getting data on mount and setting to state
 
   componentDidMount() {
     fetch('/get_data', {

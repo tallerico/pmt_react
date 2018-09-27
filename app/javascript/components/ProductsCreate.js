@@ -37,6 +37,7 @@ class ProductsCreate extends React.Component {
     }
   }
 
+  //sends data to POST route.
   submitData = () => {
     fetch(`/send_data`, {
       method: 'POST',
@@ -51,11 +52,12 @@ class ProductsCreate extends React.Component {
       },
       credentials: 'same-origin'
     }).then(response => {
+      // if any errors set error state to true which brings op error messsage
       if (response.status !== 204) {
-        // console.log(`error Status:Code ${response.status}`);
         this.setState({ error: true });
         return;
       } else {
+        // if response is ok clear state and inputs
         this.refs.name.value = '';
         this.refs.upc.value = '';
         this.refs.date.value = '';
@@ -69,6 +71,7 @@ class ProductsCreate extends React.Component {
           error: false,
           saved: true
         });
+        // show saved message for 5 seconds
         setTimeout(() => {
           this.setState({ saved: false });
         }, 5000);
@@ -78,6 +81,7 @@ class ProductsCreate extends React.Component {
     });
   };
 
+  // click handler for saveing of the data and adding of properties
   clickHandler = e => {
     e.preventDefault();
     if (e.target.id === 'save') {
@@ -88,11 +92,13 @@ class ProductsCreate extends React.Component {
     }
   };
 
+  //updates properties array with data from inputs
   updateProperties = e => {
     const propertyObj = {
       name: this.state.propertyName,
       value: this.state.propertyValue
     };
+    //takes a copie of current state and then concats additional properties added by user
     this.setState({ properties: this.state.properties.concat(propertyObj) });
     this.setState({ propertyName: '' });
     this.setState({ propertyValue: '' });
