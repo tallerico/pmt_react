@@ -30,6 +30,12 @@ This is a simple product management tool. Built using React on Rails :muscle: :f
   web-console (>= 3.3.0)
   webpacker
 ```
+- Install
+  To install all gems run:
+  ```
+  bundle install
+  ```
+
 - Database creation
 
   This was built using Ruby on Rails built SQLite db.
