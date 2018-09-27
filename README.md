@@ -1,19 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple product management tool. Built using React on Rails :muscle: :fire:
 
-Things you may want to cover:
+- Ruby version
 
-* Ruby version
+  ruby 2.5.1p57
 
-* System dependencies
+- System dependencies
 
-* Configuration
+- Configuration
 
-* Database creation
+- Database creation
 
-* Database initialization
+  This was built using Ruby on Rails built SQLite.
+  To create db simply run:
+  bin/rails db:migrate
+
+- Database initialization
 
 * How to run the test suite
 
