@@ -5,7 +5,6 @@ This is a simple product management tool. Built using React on Rails :muscle: :f
 - Ruby version
 
   **ruby 2.5.1p57**
-  **react_on_rails 11.1.4**
 
 - Dependencies
 ```
